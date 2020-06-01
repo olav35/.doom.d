@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: yno
+# key: yno
+# --
+cout << (($0) ? "YES" : "NO") << "\n";

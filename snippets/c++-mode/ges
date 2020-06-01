@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ges
+# key: ges
+# --
+string ${1:s};
+cin >> $1;

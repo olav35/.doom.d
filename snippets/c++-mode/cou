@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cou
+# key: cou
+# --
+cout << $0;

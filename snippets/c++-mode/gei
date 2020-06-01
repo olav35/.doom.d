@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: gei
+# key: gei
+# --
+int ${1:a};
+cin >> $1;

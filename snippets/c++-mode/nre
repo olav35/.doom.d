@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: nre
+# key: nre
+# --
+cout << "NO";
+return 0;

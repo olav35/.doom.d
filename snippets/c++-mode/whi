@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: whi
+# key: whi
+# --
+while($1) {
+  $0
+}

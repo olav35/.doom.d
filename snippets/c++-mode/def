@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: def
+# key: def
+# --
+default:
+  $0

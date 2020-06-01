@@ -1,0 +1,16 @@
+- Default vector names :: v and w
+- Default indicies :: i and j
+- Default arbitrary variables :: x y z
+- Default arrays :: a b c
+- Default counts :: n and m
+
+- Complete algorithms can have long names, but otherwise use 3 or fewer letter
+- 2 space long indentions
+- Normal spacing
+- C++ keywords are reserved for general snippets whereas variants are for variants for instance
+  for -> for($1; $2; $3){
+    $0
+  }
+  fup -> for(int ${1:i} = 0; $1 < ${2:n}; i++){
+    $0
+  }

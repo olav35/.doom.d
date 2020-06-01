@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: fau
+# key: fau
+# --
+for(auto ${1:x} : ${2:y}) {
+  $0
+}

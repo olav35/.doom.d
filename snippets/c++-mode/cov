@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: cov
+# key: cov
+# --
+vector<${1:int}> ${2:w};
+copy_if(${3:v}.begin(),$3.end,back_inserter($2), []($1 x){return ($4);});
