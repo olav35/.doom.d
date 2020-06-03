@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: contains
+# key: contains
+# --
+${1:s1}.find(${2:s2}) != string::npos

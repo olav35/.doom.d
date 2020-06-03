@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: nre
-# key: nre
+# name: no return
+# key: nr
 # --
 cout << "NO";
 return 0;

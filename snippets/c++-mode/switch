@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: swi
-# key: swi
+# name: switch
+# key: switch
 # --
 switch($1) {
   $0

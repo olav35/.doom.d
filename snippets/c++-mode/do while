@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: do while
+# key: dw
+# --
+do {
+  $1
+} while ($0);

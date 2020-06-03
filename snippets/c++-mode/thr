@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: thr
-# key: thr
-# --
-throw $1($0);

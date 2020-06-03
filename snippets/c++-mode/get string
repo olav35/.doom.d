@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: ges
-# key: ges
+# name: get string
+# key: gs
 # --
 string ${1:s};
 cin >> $1;

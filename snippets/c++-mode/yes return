@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: yre
-# key: yre
+# name: yes return
+# key: yr
 # --
 cout << "YES";
 return 0;

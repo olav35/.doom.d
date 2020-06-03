@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: tem
-# key: tem
+# name: template
+# key: template
 # --
 #include <bits/stdc++.h>
 

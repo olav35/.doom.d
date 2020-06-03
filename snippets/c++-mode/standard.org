@@ -1,10 +1,12 @@
-- Default vector names :: v and w
-- Default indicies :: i and j
+- Default vector names :: v w
+- Default iterators :: i j
+- Default iterables :: itr jtr
 - Default arbitrary variables :: x y z
 - Default arrays :: a b c
-- Default counts :: n and m
+- Default element counters :: n m
+- Default strings :: s1 s2
 
-- Complete algorithms can have long names, but otherwise use 3 or fewer letter
+- Commonly used snippets shall have short names
 - 2 space long indentions
 - Normal spacing
 - C++ keywords are reserved for general snippets whereas variants are for variants for instance
@@ -14,3 +16,4 @@
   fup -> for(int ${1:i} = 0; $1 < ${2:n}; i++){
     $0
   }
+- Most snippets assume zero based variables. The counter variables is an exception.

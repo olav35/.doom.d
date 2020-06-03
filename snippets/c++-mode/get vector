@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: get vector
+# key: gv
+# --
+vector<int> ${1:v}(${2:n};
+for(int i = 0; i < $2; i++){
+  cin >> $1[i];
+}

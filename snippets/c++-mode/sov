@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: sov
-# key: sov
-# --
-sort(${1:v}.begin(),$1.end(), [](auto x, auto y){return (${2:x<y});});

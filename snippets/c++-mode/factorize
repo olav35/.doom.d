@@ -2,7 +2,7 @@
 # name: factorize
 # key: factorize
 # --
-vector<int> ${1:factors};
+vector<int> ${1:v};
 for(int ${2:i}; $2 <= ${3:n}; $2++) {
   if($3 % i == 0) {
     $1.push_back(i);

@@ -86,7 +86,18 @@
 (map! :leader (:prefix ("r" . "radio") :desc "Play radio" "p" 'er-play))
 (map! :leader (:prefix ("r" . "radio") :desc "Stop radio" "s" 'er-stop))
 
-(set-file-template! 'c++-mode :trigger "tem")
+
+(set-file-template! 'c++-mode :trigger "template")
 (setq yas--default-user-snippets-dir "~/.doom.d/snippets")
 
 ;(kill-buffer (find-file "/tmp/emacs-hack.cpp"))
+
+(setq projectile-project-search-path '("~/code/"))
+
+(when IS-MAC (setq mac-option-key-is-meta t)
+      (setq mac-right-option-modifier nil))
+
+(require 'org-habit)
+
+(setq org-roam-directory "~/roam")
+(setq org-roam-index-file "index.org")

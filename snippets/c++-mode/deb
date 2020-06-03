@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: deb
-# key: deb
-# --
-cout << "${1:x} : " << $1 << "\n";
