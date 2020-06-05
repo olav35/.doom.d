@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: breadth first search
+# key: bfs                
+# --
+vector<bool> visited (${1:n}, false);
+queue<int> q;
+visited[${2:0}] = true;
+q.push($2);
+while (!q.empty()) {
+  int s = q.front(); q.pop();
+  $0
+  for (auto u : ${3:adj}[s]) {
+    if (visited[u]) continue;
+    visited[u] = true;
+    q.push(u);
+  }
+}
