@@ -1,0 +1,94 @@
+* Preface
+Welcome to my doom configuration. I hope you find some good snippets to borrow from me.
+* MacOS exclusive configurations
+#+begin_src elisp
+(when IS-MAC (setq mac-option-key-is-meta t)
+      (setq mac-right-option-modifier nil))
+#+end_src
+* Personal Information
+#+begin_src elisp
+(setq user-full-name "Olav Fosse"
+      user-mail-address "fosseolav@gmail.com")
+#+end_src
+* Emacs Radio
+This is radio program I've written. I'm planning to package and publish it to Melpa some time. For now it lives in my configuration.
+#+begin_src elisp
+(defvar er-channels '(("def con | soma fm" . "http://somafm.com/defcon256.pls")
+                      ("cyberia | lainon". "http://lainon.life:8000/cyberia.ogg")
+                      ("cafe | lainon" . "http://lainon.life:8000/cafe.ogg")
+                      ("swing | lainon" . "http://lainon.life:8000/swing.ogg")
+                      ("everything | lainon" . "http://lainon.life:8000/everything.ogg")
+                      ("metal | soma fm" . "http://somafm.com/metal130.pls")
+                      ("groove salad | soma fm" . "http://somafm.com/groovesalad256.pls")
+                      ("secret agent | soma fm" . "http://www.somafm.com/secretagent.pls")
+                      ("Ryno The Bearded" . "http://stream.ryno.cc/oo")
+                      ))
+
+(defun er-alist-keys (alist) (mapcar 'car alist))
+
+(defun er-stop () (interactive) (when (boundp 'radio-process) (delete-process radio-process)))
+
+(defun er-play-low-level (url) (setq radio-process (start-process "emacs-radio" nil "vlc" "--no-video" "-I" "rc" url)))
+
+(defun er-get-url ()
+  (setq er-channel (completing-read
+                       "Channel: "
+                       (er-alist-keys er-channels)
+                       nil nil))
+  (or (cdr (assoc er-channel er-channels)) er-channel))
+
+(defun er-play ()
+  (interactive)
+  (setq url (er-get-url))
+  (er-stop)
+  (er-play-low-level url))
+
+(map! :leader (:prefix ("r" . "radio") :desc "Play radio" "p" 'er-play))
+(map! :leader (:prefix ("r" . "radio") :desc "Stop radio" "s" 'er-stop))
+#+end_src
+* Projectile
+I like how doom handles projects out of the box
+#+begin_src elisp
+(setq projectile-project-search-path '("~/code/"))
+#+end_src
+Unfortunately adding ~/.doom.d, ~/org and ~/roam to the search path did not work as expected. Therefore I have to add them manually.
+* Org
+** Better defaults
+This makes it possible to use <s to insert a code block
+#+begin_src elisp
+(require 'org-tempo)
+#+end_src
+** Non-linear notetaking
+/The primary purpose of note-taking should not be for storing ideas, but for developing them. When we take notes, we should ask: “In what context do I want to see this note again?"/
+I use org-roam to take notes in a graph(network). The way it works is that whenever you link to a note from another note an edge(connection) is created between the two. org-roam provides easy between nodes through their edges. This is useful because it allows me to build useful connections between my notes regardless of which topic(s) they belong to. I was inspired by the zettelkasten method although I don't strictly follow it.
+#+begin_src elisp
+(setq org-roam-directory "~/roam")
+(setq org-roam-index-file "index.org")
+#+end_src
+[[file:roam_illustration.svg][An org-roam graph]]
+** Linear notetaking
+I also use org-mode for organizing knowledge that is more linear in nature. Among other things I manage todos, project ideas, quotes, reading lists, song lists, my calendar, gift ideas, wishlist and youtube scripts all in org-mode.
+
+In addition to that i track my habits in org using org-habits.
+#+begin_src elisp
+(require 'org-habit)
+#+end_src
+* Competitive programming
+I do competitive programming in cpp and for that I rely heavily on my snippets. All of them are hand written by me and only intended for my specific competitive programming workflow.
+#+begin_src elisp
+(set-file-template! 'c++-mode :trigger "template")
+(setq yas--default-user-snippets-dir "~/.doom.d/snippets")
+#+end_src
+When I ran vanilla Emacs I had some utilities for rapidly compiling, running and testing programs although I haven't bothered porting them to my doom config as of yet. I will probably bundle them in a Melpa package sooner or later.
+* IRC
+My irc setup is not complete. I haven't set up any bouncing or even a freenode connection. Right now I primarily use Matrix with Riot for irc although I want to move on to exclusively using circe + a bouncer some time.
+#+begin_src elisp
+(after! circe
+   (set-irc-server! "trigex.moe"
+                    `(:port 6667
+                      :nick "fossegrim"
+                      :user "fossegrim"
+                      :realname "fossegrim"
+                      :pass , (lambda (&rest _) (+pass-get-secret "irc/trigex.moe"))
+                      :channels ("#clan"))))
+#+end_src
