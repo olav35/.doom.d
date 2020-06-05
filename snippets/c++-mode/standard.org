@@ -4,7 +4,7 @@
 - Default arbitrary variables :: x y z
 - Default arrays :: a b c
 - Default element counters :: n m
-- Default strings :: s1 s2
+- Default strings :: s t
 
 - Commonly used snippets shall have short names
 - 2 space long indentions

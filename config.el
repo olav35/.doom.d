@@ -62,7 +62,9 @@
                       ("metal | soma fm" . "http://somafm.com/metal130.pls")
                       ("groove salad | soma fm" . "http://somafm.com/groovesalad256.pls")
                       ("secret agent | soma fm" . "http://www.somafm.com/secretagent.pls")
+                      ("Ryno The Bearded" . "http://stream.ryno.cc/oo")
                       ))
+
 
 (defun er-alist-keys (alist) (mapcar 'car alist))
 
@@ -101,3 +103,14 @@
 
 (setq org-roam-directory "~/roam")
 (setq org-roam-index-file "index.org")
+
+(require 'org-tempo) ; needed for <s
+
+(after! circe
+   (set-irc-server! "trigex.moe"
+                    `(:port 6667
+                      :nick "fossegrim"
+                      :user "fossegrim"
+                      :realname "fossegrim"
+                      :pass , (lambda (&rest _) (+pass-get-secret "irc/trigex.moe"))
+                      :channels ("#clan"))))
