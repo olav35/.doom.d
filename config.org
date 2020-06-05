@@ -11,7 +11,7 @@ Welcome to my doom configuration. I hope you find some good snippets to borrow f
       user-mail-address "fosseolav@gmail.com")
 #+end_src
 * Emacs Radio
-This is radio program I've written. I'm planning to package and publish it to Melpa some time. For now it lives in my configuration.
+This is a radio program I've written. I'm planning to package and publish it to Melpa some time. For now it lives in my configuration.
 #+begin_src elisp
 (defvar er-channels '(("def con | soma fm" . "http://somafm.com/defcon256.pls")
                       ("cyberia | lainon". "http://lainon.life:8000/cyberia.ogg")
@@ -59,7 +59,8 @@ This makes it possible to use <s to insert a code block
 (require 'org-tempo)
 #+end_src
 ** Non-linear notetaking
-/The primary purpose of note-taking should not be for storing ideas, but for developing them. When we take notes, we should ask: “In what context do I want to see this note again?"/
+The primary purpose of note-taking should not be for storing ideas, but for developing them. When we take notes, we should ask: “In what context do I want to see this note again?" - somebody
+
 I use org-roam to take notes in a graph(network). The way it works is that whenever you link to a note from another note an edge(connection) is created between the two. org-roam provides easy between nodes through their edges. This is useful because it allows me to build useful connections between my notes regardless of which topic(s) they belong to. I was inspired by the zettelkasten method although I don't strictly follow it.
 #+begin_src elisp
 (setq org-roam-directory "~/roam")
