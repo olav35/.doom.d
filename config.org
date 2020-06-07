@@ -125,7 +125,7 @@ I also use these functions for quickly compiling, running and testing cpp progra
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
 #+end_src
 * IRC
-My irc setup is not complete. I haven't set up any bouncing or even a freenode connection. Right now I primarily use Matrix with Riot for irc although I want to move on to exclusively using circe + a bouncer some time.
+At the moment I only use circe for trigex's irc server. For freenode I use Matrix. I will probably move to using circe sooner or later once I get bouncing set up for that.
 #+begin_src elisp
 (after! circe
     :config
