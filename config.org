@@ -128,17 +128,12 @@ I also use these functions for quickly compiling, running and testing cpp progra
 At the moment I only use circe for trigex's irc server. For freenode I use Matrix. I will probably move to using circe sooner or later once I get bouncing set up for that.
 #+begin_src elisp
 (after! circe
-    :config
-    (setq circe-network-options
-          (quote
-           (("trigex.moe-znc"
-             :host "znc.trigex.moe"
-             ;:use-tls t ;idk
-             :port 5597 ; might be 6667 also or something else 5597
-             :user "fossegrim/trigex" ;<username>/<network>
-             :nick "fossegrim"
-             :realname "fossegrim"
-             :pass (lambda (&rest _) (get-string-from "~/.znc")) ; Relax it's just a randomly generated string. I don't use it anywhere else.
-             :channels ("#clan")
-             )))))
+  (set-irc-server! "trigex.moe-znc"
+    `(:host "znc.trigex.moe"
+      :port 5597
+      :user "fossegrim/trigex"
+      :nick "fossegrim"
+      :realname "fossegrim"
+      :pass (lambda (&rest _) (get-string-from "~/.znc")) ; Relax it's just a randomly generated string. I don't use it anywhere else.
+      :channels ("#clan"))))
 #+end_src

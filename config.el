@@ -88,16 +88,11 @@
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
 
 (after! circe
-    :config
-    (setq circe-network-options
-          (quote
-           (("trigex.moe-znc"
-             :host "znc.trigex.moe"
-             ;:use-tls t ;idk
-             :port 5597 ; might be 6667 also or something else 5597
-             :user "fossegrim/trigex" ;<username>/<network>
-             :nick "fossegrim"
-             :realname "fossegrim"
-             :pass (lambda (&rest _) (get-string-from "~/.znc")) ; Relax it's just a randomly generated string. I don't use it anywhere else.
-             :channels ("#clan")
-             )))))
+  (set-irc-server! "trigex.moe-znc"
+    `(:host "znc.trigex.moe"
+      :port 5597
+      :user "fossegrim/trigex"
+      :nick "fossegrim"
+      :realname "fossegrim"
+      :pass (lambda (&rest _) (get-string-from "~/.znc")) ; Relax it's just a randomly generated string. I don't use it anywhere else.
+      :channels ("#clan"))))
