@@ -1,3 +1,9 @@
+(defun get-string-from (filename)
+  "Return the contents of FILENAME."
+  (with-temp-buffer
+    (insert-file-contents filename)
+    (buffer-string)))
+
 (when IS-MAC (setq mac-option-key-is-meta t)
       (setq mac-right-option-modifier nil))
 
@@ -49,11 +55,49 @@
 (set-file-template! 'c++-mode :trigger "template")
 (setq yas--default-user-snippets-dir "~/.doom.d/snippets")
 
+(defun comp-open-buffer (buffer &optional switch-window)
+      (setq temp kill-buffer-query-functions)
+      (setq kill-buffer-query-functions nil)
+      (+popup/close-all)
+      (+popup-buffer buffer)
+      (setq kill-buffer-query-functions temp)
+      (when switch-window (switch-to-buffer-other-window buffer))
+      )
+
+(defun comp-compile () (interactive)
+       (setq temp compilation-read-command)
+       (setq compilation-read-command nil)
+       (comp-open-buffer (compile (concat "g++ \"" buffer-file-name "\" --std=c++11 -o /tmp/comp-a.out")))
+       (setq compilation-read-command temp)
+       )
+
+(defun comp-run () (interactive)
+       (comp-open-buffer (make-comint "comp-run" "/tmp/comp-a.out")) t)
+
+(defun comp-test () (interactive)
+       (setq buffer (current-buffer))
+       (comp-open-buffer (make-comint "comp-test" "/tmp/comp-a.out") t)
+       (setq y (clipboard-yank))
+       (insert (if (eq y nil) "" y)
+               (comint-send-input nil nil))
+       (other-window)
+       )
+
+(map! :leader (:prefix ("k" . "competitive") :desc "Comp compile" "c" 'comp-compile))
+(map! :leader (:prefix ("k" . "competitive") :desc "Comp run" "r" 'comp-run))
+(map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
+
 (after! circe
-   (set-irc-server! "trigex.moe"
-                    `(:port 6667
-                      :nick "fossegrim"
-                      :user "fossegrim"
-                      :realname "fossegrim"
-                      :pass , (lambda (&rest _) (+pass-get-secret "irc/trigex.moe"))
-                      :channels ("#clan"))))
+    :config
+    (setq circe-network-options
+          (quote
+           (("trigex.moe-znc"
+             :host "znc.trigex.moe"
+             ;:use-tls t ;idk
+             :port 5597 ; might be 6667 also or something else 5597
+             :user "fossegrim/trigex" ;<username>/<network>
+             :nick "fossegrim"
+             :realname "fossegrim"
+             :pass (lambda (&rest _) (get-string-from "~/.znc")) ; Relax it's just a randomly generated string. I don't use it anywhere else.
+             :channels ("#clan")
+             )))))

@@ -1,5 +1,14 @@
 * Preface
 Welcome to my doom configuration. I hope you find some good snippets to borrow from me.
+* Helpers
+Doom provides a lot of helpers out of the box, but here are some of my own. Feel free to tell me if there are any viable alternative built into Doom or Emacs.
+#+begin_src elisp
+(defun get-string-from (filename)
+  "Return the contents of FILENAME."
+  (with-temp-buffer
+    (insert-file-contents filename)
+    (buffer-string)))
+#+end_src
 * MacOS exclusive configurations
 #+begin_src elisp
 (when IS-MAC (setq mac-option-key-is-meta t)
@@ -67,7 +76,7 @@ I use org-roam to take notes in a graph(network). The way it works is that whene
 (setq org-roam-index-file "index.org")
 #+end_src
 [[file:roam_illustration.svg][An org-roam graph]]
-** Linear notetaking
+** Linear notetakin
 I also use org-mode for organizing knowledge that is more linear in nature. Among other things I manage todos, project ideas, quotes, reading lists, song lists, my calendar, gift ideas, wishlist and youtube scripts all in org-mode.
 
 In addition to that i track my habits in org using org-habits.
