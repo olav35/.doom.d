@@ -1,0 +1,2 @@
+* fossegrim's doom emacs configuration
+I use a literate configuration so everything is described in [[file:config.org][config.org]].
