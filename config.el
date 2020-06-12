@@ -21,8 +21,8 @@
                     ("metal | soma fm" . "http://somafm.com/metal130.pls")
                     ("groove salad | soma fm" . "http://somafm.com/groovesalad256.pls")
                     ("secret agent | soma fm" . "http://www.somafm.com/secretagent.pls")
-                    ("Ryno The Bearded" . "http://stream.ryno.cc/oo")
-                    ("Jamendo Lounge" . "http://streaming.radionomy.com/JamendoLounge")
+                    ("ryno the bearded" . "http://stream.ryno.cc/oo")
+                    ("jamendo lounge" . "http://streaming.radionomy.com/JamendoLounge") ; Great music, but the songs repeat themselfs frequently
                     ))
 
 (defun er-alist-keys (alist) (mapcar 'car alist))
@@ -58,6 +58,9 @@
 
 (set-file-template! 'c++-mode :trigger "template")
 (setq yas--default-user-snippets-dir "~/.doom.d/snippets")
+
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
 (defun comp-open-buffer (buffer &optional switch-window)
       (setq temp kill-buffer-query-functions)

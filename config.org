@@ -35,8 +35,8 @@ This is a radio program I've written. I'm planning to package and publish it to 
                     ("metal | soma fm" . "http://somafm.com/metal130.pls")
                     ("groove salad | soma fm" . "http://somafm.com/groovesalad256.pls")
                     ("secret agent | soma fm" . "http://www.somafm.com/secretagent.pls")
-                    ("Ryno The Bearded" . "http://stream.ryno.cc/oo")
-                    ("Jamendo Lounge" . "http://streaming.radionomy.com/JamendoLounge")
+                    ("ryno the bearded" . "http://stream.ryno.cc/oo")
+                    ("jamendo lounge" . "http://streaming.radionomy.com/JamendoLounge") ; Great music, but the songs repeat themselfs frequently
                     ))
 
 (defun er-alist-keys (alist) (mapcar 'car alist))
@@ -94,6 +94,12 @@ I do competitive programming in cpp and for that I rely heavily on my snippets. 
 #+begin_src elisp
 (set-file-template! 'c++-mode :trigger "template")
 (setq yas--default-user-snippets-dir "~/.doom.d/snippets")
+#+end_src
+
+I use c++11 for all my competitive programming and that is all I use cpp for so always using c++11 linting is sufficient for me.
+#+begin_src elisp
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 #+end_src
 
 I also use these functions for quickly compiling, running and testing cpp programs.
