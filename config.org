@@ -1,5 +1,9 @@
 * Preface
 Welcome to my doom configuration. I hope you find some good snippets to borrow from me.
+* Color Theme
+#+begin_src elisp
+;(setq doom-theme 'doom-theme)
+#+end_src
 * Helpers
 Doom provides a lot of helpers out of the box, but here are some of my own. Feel free to tell me if there are any viable alternative built into Doom or Emacs.
 #+begin_src elisp
@@ -22,16 +26,18 @@ Doom provides a lot of helpers out of the box, but here are some of my own. Feel
 * Emacs Radio
 This is a radio program I've written. I'm planning to package and publish it to Melpa some time. For now it lives in my configuration.
 #+begin_src elisp
-(defvar er-channels '(("def con | soma fm" . "http://somafm.com/defcon256.pls")
-                      ("cyberia | lainon". "http://lainon.life:8000/cyberia.ogg")
-                      ("cafe | lainon" . "http://lainon.life:8000/cafe.ogg")
-                      ("swing | lainon" . "http://lainon.life:8000/swing.ogg")
-                      ("everything | lainon" . "http://lainon.life:8000/everything.ogg")
-                      ("metal | soma fm" . "http://somafm.com/metal130.pls")
-                      ("groove salad | soma fm" . "http://somafm.com/groovesalad256.pls")
-                      ("secret agent | soma fm" . "http://www.somafm.com/secretagent.pls")
-                      ("Ryno The Bearded" . "http://stream.ryno.cc/oo")
-                      ))
+; should be defvar when packaged
+(setq er-channels '(("def con | soma fm" . "http://somafm.com/defcon256.pls")
+                    ("cyberia | lainon". "http://lainon.life:8000/cyberia.ogg")
+                    ("cafe | lainon" . "http://lainon.life:8000/cafe.ogg")
+                    ("swing | lainon" . "http://lainon.life:8000/swing.ogg")
+                    ("everything | lainon" . "http://lainon.life:8000/everything.ogg")
+                    ("metal | soma fm" . "http://somafm.com/metal130.pls")
+                    ("groove salad | soma fm" . "http://somafm.com/groovesalad256.pls")
+                    ("secret agent | soma fm" . "http://www.somafm.com/secretagent.pls")
+                    ("Ryno The Bearded" . "http://stream.ryno.cc/oo")
+                    ("Jamendo Lounge" . "http://streaming.radionomy.com/JamendoLounge")
+                    ))
 
 (defun er-alist-keys (alist) (mapcar 'car alist))
 
@@ -126,14 +132,36 @@ I also use these functions for quickly compiling, running and testing cpp progra
 #+end_src
 * IRC
 At the moment I only use circe for trigex's irc server. For freenode I use Matrix. I will probably move to using circe sooner or later once I get bouncing set up for that.
+Inlining images plus 1000 line znc history lead to unbearable loading times. Therefore these are commented out.
 #+begin_src elisp
+;(require 'circe-display-images)
+;(enable-circe-display-images)
+#+end_src
+#+begin_src elisp
+(map! :leader (:prefix ("o" . "+open") :desc "IRC" "i" '=irc))
 (after! circe
   (set-irc-server! "trigex.moe-znc"
-    `(:host "znc.trigex.moe"
-      :port 5597
-      :user "fossegrim/trigex"
-      :nick "fossegrim"
-      :realname "fossegrim"
-      :pass (lambda (&rest _) (get-string-from "~/.znc")) ; Relax it's just a randomly generated string. I don't use it anywhere else.
-      :channels ("#clan"))))
+                   `(:host "znc.trigex.moe"
+                     :port 5597
+                     :user "fossegrim/trigex"
+                     :nick "fossegrim"
+                     :realname "fossegrim"
+                     :pass (lambda (&rest _) (get-string-from "~/.znc")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
+                     :channels ("#clan" "#img-dump" "#sethhateclub" "#bunker"))))
+
+(when nil (set-irc-server! "chat.freenode.net"
+                   `(:tls t
+                     :port 6697
+                     :nick "fossegrim"
+                     :sasl-username "fossegrim"
+                     :sasl-password (lambda (&rest _) (get-string-from "~/.freenode")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
+                     :channels ("#emacs" "#haskell" "##c++"))))
 #+end_src
+* RSS
+#+begin_src elisp
+(setq elfeed-feeds
+      '("http://fossegr.im/feed.xml" "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"))
+
+#+end_src
+* Startup
+I would like my workspace workflow to be one where I have a *IRC*, *RSS*, ~/org/, ~/roam/ and ~/doom/ have a constant S-(1-5) and I use SPC p p to switch to project workspaces. To get this workflow I tried making doom open some workspaces with each of these tasks at startup although I couldn't get any of this to work.

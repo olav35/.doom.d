@@ -1,3 +1,5 @@
+;(setq doom-theme 'doom-theme)
+
 (defun get-string-from (filename)
   "Return the contents of FILENAME."
   (with-temp-buffer
@@ -10,16 +12,18 @@
 (setq user-full-name "Olav Fosse"
       user-mail-address "fosseolav@gmail.com")
 
-(defvar er-channels '(("def con | soma fm" . "http://somafm.com/defcon256.pls")
-                      ("cyberia | lainon". "http://lainon.life:8000/cyberia.ogg")
-                      ("cafe | lainon" . "http://lainon.life:8000/cafe.ogg")
-                      ("swing | lainon" . "http://lainon.life:8000/swing.ogg")
-                      ("everything | lainon" . "http://lainon.life:8000/everything.ogg")
-                      ("metal | soma fm" . "http://somafm.com/metal130.pls")
-                      ("groove salad | soma fm" . "http://somafm.com/groovesalad256.pls")
-                      ("secret agent | soma fm" . "http://www.somafm.com/secretagent.pls")
-                      ("Ryno The Bearded" . "http://stream.ryno.cc/oo")
-                      ))
+; should be defvar when packaged
+(setq er-channels '(("def con | soma fm" . "http://somafm.com/defcon256.pls")
+                    ("cyberia | lainon". "http://lainon.life:8000/cyberia.ogg")
+                    ("cafe | lainon" . "http://lainon.life:8000/cafe.ogg")
+                    ("swing | lainon" . "http://lainon.life:8000/swing.ogg")
+                    ("everything | lainon" . "http://lainon.life:8000/everything.ogg")
+                    ("metal | soma fm" . "http://somafm.com/metal130.pls")
+                    ("groove salad | soma fm" . "http://somafm.com/groovesalad256.pls")
+                    ("secret agent | soma fm" . "http://www.somafm.com/secretagent.pls")
+                    ("Ryno The Bearded" . "http://stream.ryno.cc/oo")
+                    ("Jamendo Lounge" . "http://streaming.radionomy.com/JamendoLounge")
+                    ))
 
 (defun er-alist-keys (alist) (mapcar 'car alist))
 
@@ -87,12 +91,27 @@
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp run" "r" 'comp-run))
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
 
+;(require 'circe-display-images)
+;(enable-circe-display-images)
+
+(map! :leader (:prefix ("o" . "+open") :desc "IRC" "i" '=irc))
 (after! circe
   (set-irc-server! "trigex.moe-znc"
-    `(:host "znc.trigex.moe"
-      :port 5597
-      :user "fossegrim/trigex"
-      :nick "fossegrim"
-      :realname "fossegrim"
-      :pass (lambda (&rest _) (get-string-from "~/.znc")) ; Relax it's just a randomly generated string. I don't use it anywhere else.
-      :channels ("#clan"))))
+                   `(:host "znc.trigex.moe"
+                     :port 5597
+                     :user "fossegrim/trigex"
+                     :nick "fossegrim"
+                     :realname "fossegrim"
+                     :pass (lambda (&rest _) (get-string-from "~/.znc")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
+                     :channels ("#clan" "#img-dump" "#sethhateclub" "#bunker"))))
+
+(when nil (set-irc-server! "chat.freenode.net"
+                   `(:tls t
+                     :port 6697
+                     :nick "fossegrim"
+                     :sasl-username "fossegrim"
+                     :sasl-password (lambda (&rest _) (get-string-from "~/.freenode")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
+                     :channels ("#emacs" "#haskell" "##c++"))))
+
+(setq elfeed-feeds
+      '("http://fossegr.im/feed.xml" "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"))
