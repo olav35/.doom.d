@@ -118,3 +118,22 @@
 
 (setq elfeed-feeds
       '("http://fossegr.im/feed.xml" "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"))
+
+(defun olav-open-book ()
+  (interactive)
+  (setq temp default-directory)
+  (cd "~/Google Drive/Books")
+  (call-interactively 'counsel-find-file-extern)
+  (setq default-directory temp)
+)
+
+(defun olav-open-anime ()
+  (interactive)
+  (setq temp default-directory)
+  (cd "~/anime")
+  (call-interactively 'counsel-find-file-extern)
+  (setq default-directory temp)
+)
+
+(map! :leader (:prefix ("o" . "open") :desc "Open a book" "B" 'olav-open-book))
+(map! :leader (:prefix ("o" . "open") :desc "Open an anime episode" "A" 'olav-open-anime))
