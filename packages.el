@@ -50,3 +50,5 @@
 ;(unpin! t)
 
 (package! doom-snippets :ignore t)
+
+(package! mentor)

@@ -139,12 +139,15 @@ I also use these functions for quickly compiling, running and testing cpp progra
 * IRC
 At the moment I only use circe for trigex's irc server. For freenode I use Matrix. I will probably move to using circe sooner or later once I get bouncing set up for that.
 Inlining images plus 1000 line znc history lead to unbearable loading times. Therefore these are commented out.
+
+I figured image in-lining is a bit... Dangerous.
 #+begin_src elisp
 ;(require 'circe-display-images)
 ;(enable-circe-display-images)
 #+end_src
+
 #+begin_src elisp
-(map! :leader (:prefix ("o" . "+open") :desc "IRC" "i" '=irc))
+(map! :leader (:prefix ("o" . "+open") :desc "Open circe" "i" '=irc))
 (after! circe
   (set-irc-server! "trigex.moe-znc"
                    `(:host "znc.trigex.moe"
@@ -163,14 +166,32 @@ Inlining images plus 1000 line znc history lead to unbearable loading times. The
                      :sasl-password (lambda (&rest _) (get-string-from "~/.freenode")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
                      :channels ("#emacs" "#haskell" "##c++"))))
 #+end_src
+
 * RSS
 #+begin_src elisp
 (setq elfeed-feeds
       '("http://fossegr.im/feed.xml" "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"))
-
+(defun olav-rss ()
+  (interactive)
+  (elfeed-update)
+  (persp-switch "*RSS*")
+  (=rss))
+(map! :leader (:prefix ("o" . "open") :desc "Open elfeed" "R"  'olav-rss))
 #+end_src
-* Startup
-I would like my workspace workflow to be one where I have a *IRC*, *RSS*, ~/org/, ~/roam/ and ~/doom/ have a constant S-(1-5) and I use SPC p p to switch to project workspaces. To get this workflow I tried making doom open some workspaces with each of these tasks at startup although I couldn't get any of this to work.
+
+* Torrent
+Yes.
+
+Emacs has a torrent client. It's called [[https://github.com/skangas/mentor][mentor]].
+
+#+begin_src elisp
+(defun olav-mentor ()
+  (interactive)
+  (persp-switch "*TORRENT*")
+  (mentor))
+(map! :leader (:prefix ("o" . "open") :desc "Open mentor" "m" 'olav-mentor))
+(setq mentor-rtorrent-download-directory "~/Downloads")
+#+end_src
 
 * Media Viewers
 Since I am inside Emacs all the time either way it makes sense to use it to open media files such as books and videos. I find Preview.app to work better than the Emacs pdf viewers so that is what I use to read books.
@@ -194,3 +215,4 @@ Since I am inside Emacs all the time either way it makes sense to use it to open
 (map! :leader (:prefix ("o" . "open") :desc "Open a book" "B" 'olav-open-book))
 (map! :leader (:prefix ("o" . "open") :desc "Open an anime episode" "A" 'olav-open-anime))
 #+end_src
+

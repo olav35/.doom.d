@@ -97,7 +97,7 @@
 ;(require 'circe-display-images)
 ;(enable-circe-display-images)
 
-(map! :leader (:prefix ("o" . "+open") :desc "IRC" "i" '=irc))
+(map! :leader (:prefix ("o" . "+open") :desc "Open circe" "i" '=irc))
 (after! circe
   (set-irc-server! "trigex.moe-znc"
                    `(:host "znc.trigex.moe"
@@ -118,6 +118,19 @@
 
 (setq elfeed-feeds
       '("http://fossegr.im/feed.xml" "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"))
+(defun olav-rss ()
+  (interactive)
+  (elfeed-update)
+  (persp-switch "*RSS*")
+  (=rss))
+(map! :leader (:prefix ("o" . "open") :desc "Open elfeed" "R"  'olav-rss))
+
+(defun olav-mentor ()
+  (interactive)
+  (persp-switch "*TORRENT*")
+  (mentor))
+(map! :leader (:prefix ("o" . "open") :desc "Open mentor" "m" 'olav-mentor))
+(setq mentor-rtorrent-download-directory "~/Downloads")
 
 (defun olav-open-book ()
   (interactive)
