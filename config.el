@@ -117,26 +117,54 @@
                      :channels ("#emacs" "#haskell" "##c++"))))
 
 (setq elfeed-feeds
-      '("http://fossegr.im/feed.xml" "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"))
+      '("http://fossegr.im/feed.xml"
+        "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"
+        "https://protesilaos.com/codelog.xml"
+        "https://www.distrotube.com/phpbb/app.php/feed"
+        "https://www.kode24.no/?lab_viewport=rss"
+        "https://xkcd.com/atom.xml"
+        "https://news.ycombinator.com/rss"
+        "https://www.reddit.com/r/emacs/new.rss"
+        ))
 (defun olav-rss ()
   (interactive)
   (elfeed-update)
   (persp-switch "*RSS*")
   (=rss))
-(map! :leader (:prefix ("o" . "open") :desc "Open elfeed" "R"  'olav-rss))
+(map! :leader (:prefix ("o" . "open") :desc "Open elfeed" "l"  'olav-rss))
 
-(defun olav-mentor ()
-  (interactive)
-  (persp-switch "*TORRENT*")
-  (mentor))
-(map! :leader (:prefix ("o" . "open") :desc "Open mentor" "m" 'olav-mentor))
-(setq mentor-rtorrent-download-directory "~/Downloads")
+;(defun olav-mentor ()
+;  (interactive)
+;  (persp-switch "*TORRENT*")
+;  (mentor))
+;(map! :leader (:prefix ("o" . "open") :desc "Open mentor" "m" 'olav-mentor))
+;(setq mentor-rtorrent-download-directory "~/Downloads")
+;(after! 'mentor
+;  (define-key mentor-files-mode-map "j" 'mentor-decrease-priority)
+;  (define-key mentor-files-mode-map "k" 'mentor-increase-priority))
+
+;(defun olav-torrent ()
+;  (interactive)
+;  (persp-switch "*TORRENT*")
+;  (transmission)
+;  )
+;(evil-set-initial-state 'transmission-mode 'normal)
+;(add-hook 'transmission-mode 'disable-evil-mode)
+;(map! :leader (:prefix ("o" . "open") :desc "Open torrent" "m" 'olav-torrent))
+
+;(after! transmission
+;  (defun olav-add-magnet (magnet)
+;    (interactive "sMagnet: ")
+;    (transmission-add magnet))
+;  (define-key transmission-mode-map "a" 'olav-add-magnet)
+  ;)
 
 (defun olav-open-book ()
   (interactive)
   (setq temp default-directory)
   (cd "~/Google Drive/Books")
   (call-interactively 'counsel-find-file-extern)
+;  (counsel-find-file-extern (+default/find-file-under-here))
   (setq default-directory temp)
 )
 
@@ -145,8 +173,22 @@
   (setq temp default-directory)
   (cd "~/anime")
   (call-interactively 'counsel-find-file-extern)
+  ;(counsel-find-file-extern (+default/find-file-under-here)
   (setq default-directory temp)
 )
 
 (map! :leader (:prefix ("o" . "open") :desc "Open a book" "B" 'olav-open-book))
 (map! :leader (:prefix ("o" . "open") :desc "Open an anime episode" "A" 'olav-open-anime))
+
+(defun olav-scratch ()
+  (interactive)
+  (if (+workspace-exists-p "*SCRATCH*")
+      (persp-switch "*SCRATCH*")
+      (progn (persp-switch "*SCRATCH*")
+             (switch-to-buffer "*scratch*"))
+    )
+)
+
+(map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))
+
+(map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
