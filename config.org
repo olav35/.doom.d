@@ -2,7 +2,7 @@
 Welcome to my doom configuration. I hope you find some good snippets to borrow from me.
 * Color Theme
 #+begin_src elisp
-;(setq doom-theme 'doom-theme)
+(setq doom-theme 'doom-one)
 #+end_src
 * Helpers
 Doom provides a lot of helpers out of the box, but here are some of my own. Feel free to tell me if there are any viable alternative built into Doom or Emacs.
@@ -16,7 +16,8 @@ Doom provides a lot of helpers out of the box, but here are some of my own. Feel
 * MacOS exclusive configurations
 #+begin_src elisp
 (when IS-MAC (setq mac-option-key-is-meta t)
-      (setq mac-right-option-modifier nil))
+      (setq mac-right-option-modifier nil)
+      (setq frame-resize-pixelwise t))
 #+end_src
 * Personal Information
 #+begin_src elisp
@@ -167,17 +168,30 @@ I figured image in-lining is a bit... Dangerous.
                      :channels ("#emacs" "#haskell" "##c++"))))
 #+end_src
 
+* Web Browsing
+I use xwidget-webkit which is a way of embedding a webkit browser inside of Emacs. I use xwidget-webkit whenever I am to open a webpage from within Emacs. For example if I am opening an link from my RSS feed or IRC which do inside of Emacs.
+#+begin_src elisp
+(defun olav-browse (url &optional second-argument)
+  ; interactive
+  (interactive "surl: ")
+  (persp-switch "*BROWSER*")
+  (xwidget-webkit-browse-url url nil))
+
+(setq browse-url-browser-function 'olav-browse)
+(map! :leader (:prefix ("o" . "open") :desc "Open browser" "b"  'olav-browse))
+#+end_src
 * RSS
 #+begin_src elisp
 (setq elfeed-feeds
       '("http://fossegr.im/feed.xml"
-        "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"
+        "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w" ; My channel ? (haven't checked)
         "https://protesilaos.com/codelog.xml"
         "https://www.distrotube.com/phpbb/app.php/feed"
-        "https://www.kode24.no/?lab_viewport=rss"
+        ;"https://www.kode24.no/?lab_viewport=rss"
         "https://xkcd.com/atom.xml"
-        "https://news.ycombinator.com/rss"
-        "https://www.reddit.com/r/emacs/new.rss"
+        ;"https://news.ycombinator.com/rss"
+        ;"https://www.reddit.com/r/emacs/new.rss"
+        "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" ; Luke Smith
         ))
 (defun olav-rss ()
   (interactive)
@@ -204,8 +218,6 @@ Emacs has some torrent clients, but I couldn't get any of them to work very well
 ;  (define-key mentor-files-mode-map "k" 'mentor-increase-priority))
 #+end_src
 
-The add torrent function of transmission (the Emacs package) only works for files. This makes it so that it only works for magnets instead.
-This replaces the
 #+begin_src elisp
 ;(defun olav-torrent ()
 ;  (interactive)
@@ -225,7 +237,7 @@ This replaces the
 #+end_src
 
 * Media Viewers
-Since I am inside Emacs all the time either way it makes sense to use it to open media files such as books and videos. I find Preview.app to work better than the Emacs pdf viewers so that is what I use to read books.
+Since I am inside Emacs all the time either way it makes sense to use it to open media files such as books and videos. I find Preview.app to work better than the Emacs pdf viewers so that is what I use to read books. Ideally I would want to open the media inside of xwidget-webkit, but I have not found a way to do this so far.
 #+begin_src elisp
 (defun olav-open-book ()
   (interactive)
@@ -249,15 +261,14 @@ Since I am inside Emacs all the time either way it makes sense to use it to open
 (map! :leader (:prefix ("o" . "open") :desc "Open an anime episode" "A" 'olav-open-anime))
 #+end_src
 * Scratch Perspective
-I use a scratch perspective to do tasks that don't fit in the current perspective or any other project. For instance if I am to install a global package when I am in the irc perspective I would switch to the scratch perspective an do it there.
+I use a scratch perspective to do tasks that don't fit in the current perspective or any other project. For instance if I am to install a global package when I am in the irc perspective I would switch to the scratch perspective an do it there. This serves as an alternative to pulling up an external terminal.
 #+begin_src elisp
 (defun olav-scratch ()
   (interactive)
   (if (+workspace-exists-p "*SCRATCH*")
       (persp-switch "*SCRATCH*")
       (progn (persp-switch "*SCRATCH*")
-             (switch-to-buffer "*scratch*"))
-    )
+             (switch-to-buffer "*scratch*")))
 )
 
 (map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))

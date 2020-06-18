@@ -1,4 +1,4 @@
-;(setq doom-theme 'doom-theme)
+(setq doom-theme 'doom-one)
 
 (defun get-string-from (filename)
   "Return the contents of FILENAME."
@@ -7,7 +7,8 @@
     (buffer-string)))
 
 (when IS-MAC (setq mac-option-key-is-meta t)
-      (setq mac-right-option-modifier nil))
+      (setq mac-right-option-modifier nil)
+      (setq frame-resize-pixelwise t))
 
 (setq user-full-name "Olav Fosse"
       user-mail-address "fosseolav@gmail.com")
@@ -116,15 +117,25 @@
                      :sasl-password (lambda (&rest _) (get-string-from "~/.freenode")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
                      :channels ("#emacs" "#haskell" "##c++"))))
 
+(defun olav-browse (url &optional second-argument)
+  ; interactive
+  (interactive "surl: ")
+  (persp-switch "*BROWSER*")
+  (xwidget-webkit-browse-url url nil))
+
+(setq browse-url-browser-function 'olav-browse)
+(map! :leader (:prefix ("o" . "open") :desc "Open browser" "b"  'olav-browse))
+
 (setq elfeed-feeds
       '("http://fossegr.im/feed.xml"
-        "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w"
+        "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w" ; My channel ? (haven't checked)
         "https://protesilaos.com/codelog.xml"
         "https://www.distrotube.com/phpbb/app.php/feed"
-        "https://www.kode24.no/?lab_viewport=rss"
+        ;"https://www.kode24.no/?lab_viewport=rss"
         "https://xkcd.com/atom.xml"
-        "https://news.ycombinator.com/rss"
-        "https://www.reddit.com/r/emacs/new.rss"
+        ;"https://news.ycombinator.com/rss"
+        ;"https://www.reddit.com/r/emacs/new.rss"
+        "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" ; Luke Smith
         ))
 (defun olav-rss ()
   (interactive)
@@ -185,8 +196,7 @@
   (if (+workspace-exists-p "*SCRATCH*")
       (persp-switch "*SCRATCH*")
       (progn (persp-switch "*SCRATCH*")
-             (switch-to-buffer "*scratch*"))
-    )
+             (switch-to-buffer "*scratch*")))
 )
 
 (map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))
