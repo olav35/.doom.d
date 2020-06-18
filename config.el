@@ -117,11 +117,24 @@
                      :sasl-password (lambda (&rest _) (get-string-from "~/.freenode")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
                      :channels ("#emacs" "#haskell" "##c++"))))
 
-(defun olav-browse (url &optional second-argument)
-  ; interactive
-  (interactive "surl: ")
+(defun olav-is-xwidget-webkit-buffer-p (buffer) (string-prefix-p "*xwidget webkit: " (buffer-name buffer)))
+(defun olav-xwidget-webkit-buffer ()
+  "xwidget-webkit buffer or nil if doesn't exist"
+  (interactive)
+  (setq buffer (seq-find #'olav-is-xwidget-webkit-buffer-p (buffer-list)))
+  (if (called-interactively-p)
+      (switch-to-buffer buffer)
+    buffer))
+
+(defun olav-browse (&optional url second-argument)
+  (interactive)
   (persp-switch "*BROWSER*")
-  (xwidget-webkit-browse-url url nil))
+  (if (called-interactively-p)
+      (if (olav-xwidget-webkit-buffer)
+          (switch-to-buffer (olav-xwidget-webkit-buffer))
+          (xwidget-webkit-browse-url "https://fossegr.im" nil)
+          )
+    (xwidget-webkit-browse-url url nil)))
 
 (setq browse-url-browser-function 'olav-browse)
 (map! :leader (:prefix ("o" . "open") :desc "Open browser" "b"  'olav-browse))
