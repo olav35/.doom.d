@@ -6,9 +6,30 @@
     (insert-file-contents filename)
     (buffer-string)))
 
+(defun olav-open-safari ()
+  (interactive)
+  (shell-command "open -a Safari.app"))
+
+(defun olav-open-discord ()
+  (interactive)
+  (shell-command "open -a Discord.app"))
+
+(defun olav-open-riot ()
+  (interactive)
+  (shell-command "open -a Riot.app"))
+
+(defun olav-open-chrome ()
+  (interactive)
+  (shell-command "open -a \"Google Chrome\".app"))
+
 (when IS-MAC (setq mac-option-key-is-meta t)
       (setq mac-right-option-modifier nil)
-      (setq frame-resize-pixelwise t))
+      (setq frame-resize-pixelwise t)
+      (map! :leader (:prefix ("o" . "open") :desc "Open Safari" "S" 'olav-open-safari))
+      (map! :leader (:prefix ("o" . "open") :desc "Open Discord" "D" 'olav-open-discord))
+      (map! :leader (:prefix ("o" . "open") :desc "Open Riot" "m" 'olav-open-riot))
+      (map! :leader (:prefix ("o" . "open") :desc "Open Chrome" "c" 'olav-open-chrome))
+      )
 
 (setq user-full-name "Olav Fosse"
       user-mail-address "fosseolav@gmail.com")
@@ -118,24 +139,18 @@
                      :channels ("#emacs" "#haskell" "##c++"))))
 
 (defun olav-is-xwidget-webkit-buffer-p (buffer) (string-prefix-p "*xwidget webkit: " (buffer-name buffer)))
+
 (defun olav-xwidget-webkit-buffer ()
   "xwidget-webkit buffer or nil if doesn't exist"
-  (interactive)
-  (setq buffer (seq-find #'olav-is-xwidget-webkit-buffer-p (buffer-list)))
-  (if (called-interactively-p)
-      (switch-to-buffer buffer)
-    buffer))
+  (seq-find #'olav-is-xwidget-webkit-buffer-p (buffer-list)))
 
 (defun olav-browse (&optional url second-argument)
   (interactive)
   (persp-switch "*BROWSER*")
   (if (called-interactively-p)
-      (if (olav-xwidget-webkit-buffer)
-          (switch-to-buffer (olav-xwidget-webkit-buffer))
-          (xwidget-webkit-browse-url "https://fossegr.im" nil)
-          )
-    (xwidget-webkit-browse-url url nil)))
-
+      (when (not (olav-xwidget-webkit-buffer)) (xwidget-webkit-browse-url "https://fossegr.im" nil))
+    (xwidget-webkit-browse-url url nil))
+    (switch-to-buffer (olav-xwidget-webkit-buffer)))
 (setq browse-url-browser-function 'olav-browse)
 (map! :leader (:prefix ("o" . "open") :desc "Open browser" "b"  'olav-browse))
 
@@ -149,6 +164,7 @@
         ;"https://news.ycombinator.com/rss"
         ;"https://www.reddit.com/r/emacs/new.rss"
         "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" ; Luke Smith
+        "https://www.kode24.no/?lab_viewport=rss"
         ))
 (defun olav-rss ()
   (interactive)
@@ -215,3 +231,5 @@
 (map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))
 
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
+
+(setq doom-line-numbers-style 'relative)
