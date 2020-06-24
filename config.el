@@ -97,7 +97,7 @@
 
 (require 'org-tempo)
 
-(setq org-roam-directory "~/roam")
+(setq org-roam-directory "~/org/roam")
 (setq org-roam-index-file "index.org")
 
 (require 'org-habit)
@@ -125,7 +125,7 @@
        )
 
 (defun comp-run () (interactive)
-       (comp-open-buffer (make-comint "comp-run" "/tmp/comp-a.out")) t)
+       (comp-open-buffer (setq buffer (make-comint "comp-run" "/tmp/comp-a.out")) t))
 
 (defun comp-test () (interactive)
        (setq buffer (current-buffer))
@@ -189,6 +189,7 @@
         ;"https://www.reddit.com/r/emacs/new.rss"
         "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" ; Luke Smith
         "https://www.kode24.no/?lab_viewport=rss"
+        "https://nitter.net/olebullsplass/rss"
         ))
 (defun olav-rss ()
   (interactive)
@@ -257,3 +258,6 @@
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 
 (setq doom-line-numbers-style 'relative)
+
+;(setq org-latex-create-formula-image-program 'dvisvgm)
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))

@@ -124,7 +124,7 @@ The primary purpose of note-taking should not be for storing ideas, but for deve
 
 I use org-roam to take notes in a graph(network). The way it works is that whenever you link to a note from another note an edge(connection) is created between the two. org-roam provides easy between nodes through their edges. This is useful because it allows me to build useful connections between my notes regardless of which topic(s) they belong to. I was inspired by the zettelkasten method although I don't strictly follow it.
 #+begin_src elisp
-(setq org-roam-directory "~/roam")
+(setq org-roam-directory "~/org/roam")
 (setq org-roam-index-file "index.org")
 #+end_src
 [[file:roam_illustration.svg][An org-roam graph]]
@@ -134,6 +134,12 @@ I also use org-mode for organizing knowledge that is more linear in nature. Amon
 In addition to that i track my habits in org using org-habits.
 #+begin_src elisp
 (require 'org-habit)
+#+end_src
+** Latex
+I use latex for notating inline mathematics equations in my org notes. Unfortunately the previews are quite fuzzy on macOS. I've heard that this problem can be avoided by using emacs-mac, but seeing as it doesn't support Emacs 27 I haven't bothered with it.
+#+begin_src emacs-lisp
+;(setq org-latex-create-formula-image-program 'dvisvgm)
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 #+end_src
 * Competitive programming
 I do competitive programming in cpp and for that I rely heavily on my snippets. All of them are hand written by me and only intended for my specific competitive programming workflow.
@@ -167,7 +173,7 @@ I also use these functions for quickly compiling, running and testing cpp progra
        )
 
 (defun comp-run () (interactive)
-       (comp-open-buffer (make-comint "comp-run" "/tmp/comp-a.out")) t)
+       (comp-open-buffer (setq buffer (make-comint "comp-run" "/tmp/comp-a.out")) t))
 
 (defun comp-test () (interactive)
        (setq buffer (current-buffer))
@@ -245,6 +251,7 @@ I use xwidget-webkit which is a way of embedding a webkit browser inside of Emac
         ;"https://www.reddit.com/r/emacs/new.rss"
         "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" ; Luke Smith
         "https://www.kode24.no/?lab_viewport=rss"
+        "https://nitter.net/olebullsplass/rss"
         ))
 (defun olav-rss ()
   (interactive)
