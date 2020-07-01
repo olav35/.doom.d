@@ -97,6 +97,8 @@
 
 (require 'org-tempo)
 
+(setq org-roam-graph-viewer 'counsel-find-file-extern)
+
 (setq org-roam-directory "~/org/roam")
 (setq org-roam-index-file "index.org")
 
@@ -175,11 +177,11 @@
       (when (not (olav-xwidget-webkit-buffer)) (xwidget-webkit-browse-url "https://fossegr.im" nil))
     (xwidget-webkit-browse-url url nil))
     (switch-to-buffer (olav-xwidget-webkit-buffer)))
-(setq browse-url-browser-function 'olav-browse)
+(setq browse-url-browser-function 'browse-url-default-macosx-browser)
 (map! :leader (:prefix ("o" . "open") :desc "Open browser" "b"  'olav-browse))
 
 (setq elfeed-feeds
-      '("http://fossegr.im/feed.xml"
+      '(;"http://fossegr.im/feed.xml"
         "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w" ; My channel ? (haven't checked)
         "https://protesilaos.com/codelog.xml"
         "https://www.distrotube.com/phpbb/app.php/feed"
@@ -189,7 +191,7 @@
         ;"https://www.reddit.com/r/emacs/new.rss"
         "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" ; Luke Smith
         "https://www.kode24.no/?lab_viewport=rss"
-        "https://nitter.net/olebullsplass/rss"
+        ;"https://nitter.net/olebullsplass/rss"
         ))
 (defun olav-rss ()
   (interactive)
