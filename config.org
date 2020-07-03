@@ -192,37 +192,6 @@ I also use these functions for quickly compiling, running and testing cpp progra
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp run" "r" 'comp-run))
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
 #+end_src
-* IRC
-At the moment I only use circe for trigex's irc server. For freenode I use Matrix. I will probably move to using circe sooner or later once I get bouncing set up for that.
-Inlining images plus 1000 line znc history lead to unbearable loading times. Therefore these are commented out.
-
-I figured image in-lining is a bit... Dangerous.
-#+begin_src elisp
-;(require 'circe-display-images)
-;(enable-circe-display-images)
-#+end_src
-
-#+begin_src elisp
-(map! :leader (:prefix ("o" . "+open") :desc "Open circe" "i" '=irc))
-(after! circe
-  (set-irc-server! "trigex.moe-znc"
-                   `(:host "znc.trigex.moe"
-                     :port 5597
-                     :user "fossegrim/trigex"
-                     :nick "fossegrim"
-                     :realname "fossegrim"
-                     :pass (lambda (&rest _) (get-string-from "~/.znc")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
-                     :channels ("#clan" "#img-dump" "#sethhateclub" "#bunker"))))
-
-(when nil (set-irc-server! "chat.freenode.net"
-                   `(:tls t
-                     :port 6697
-                     :nick "fossegrim"
-                     :sasl-username "fossegrim"
-                     :sasl-password (lambda (&rest _) (get-string-from "~/.freenode")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
-                     :channels ("#emacs" "#haskell" "##c++"))))
-#+end_src
-
 * Web Browsing
 I use xwidget-webkit which is a way of embedding a webkit browser inside of Emacs. I use xwidget-webkit whenever I am to open a webpage from within Emacs. For example if I am opening an link from my RSS feed or IRC which do inside of Emacs.
 #+begin_src elisp

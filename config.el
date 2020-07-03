@@ -142,28 +142,6 @@
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp run" "r" 'comp-run))
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
 
-;(require 'circe-display-images)
-;(enable-circe-display-images)
-
-(map! :leader (:prefix ("o" . "+open") :desc "Open circe" "i" '=irc))
-(after! circe
-  (set-irc-server! "trigex.moe-znc"
-                   `(:host "znc.trigex.moe"
-                     :port 5597
-                     :user "fossegrim/trigex"
-                     :nick "fossegrim"
-                     :realname "fossegrim"
-                     :pass (lambda (&rest _) (get-string-from "~/.znc")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
-                     :channels ("#clan" "#img-dump" "#sethhateclub" "#bunker"))))
-
-(when nil (set-irc-server! "chat.freenode.net"
-                   `(:tls t
-                     :port 6697
-                     :nick "fossegrim"
-                     :sasl-username "fossegrim"
-                     :sasl-password (lambda (&rest _) (get-string-from "~/.freenode")) ; relax it's randomly generated, not used anywhere else and my disk is encrypted
-                     :channels ("#emacs" "#haskell" "##c++"))))
-
 (defun olav-is-xwidget-webkit-buffer-p (buffer) (string-prefix-p "*xwidget webkit: " (buffer-name buffer)))
 
 (defun olav-xwidget-webkit-buffer ()
