@@ -1,4 +1,4 @@
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-one-light)
 
 (defun get-string-from (filename)
   "Return the contents of FILENAME."
@@ -203,27 +203,6 @@
 ;    (transmission-add magnet))
 ;  (define-key transmission-mode-map "a" 'olav-add-magnet)
   ;)
-
-(defun olav-open-book ()
-  (interactive)
-  (setq temp default-directory)
-  (cd "~/Google Drive/Books")
-  (call-interactively 'counsel-find-file-extern)
-;  (counsel-find-file-extern (+default/find-file-under-here))
-  (setq default-directory temp)
-)
-
-(defun olav-open-anime ()
-  (interactive)
-  (setq temp default-directory)
-  (cd "~/anime")
-  (call-interactively 'counsel-find-file-extern)
-  ;(counsel-find-file-extern (+default/find-file-under-here)
-  (setq default-directory temp)
-)
-
-(map! :leader (:prefix ("o" . "open") :desc "Open a book" "B" 'olav-open-book))
-(map! :leader (:prefix ("o" . "open") :desc "Open an anime episode" "A" 'olav-open-anime))
 
 (defun olav-scratch ()
   (interactive)

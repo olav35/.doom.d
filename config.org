@@ -2,7 +2,7 @@
 Welcome to my doom configuration. I hope you find some good snippets to borrow from me.
 * Color Theme
 #+begin_src elisp
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-one-light)
 #+end_src
 * Helpers
 Doom provides a lot of helpers out of the box, but here are some of my own. Feel free to tell me if there are any viable alternative built into Doom or Emacs.
@@ -269,30 +269,6 @@ Emacs has some torrent clients, but I couldn't get any of them to work very well
   ;)
 #+end_src
 
-* Media Viewers
-Since I am inside Emacs all the time either way it makes sense to use it to open media files such as books and videos. I find Preview.app to work better than the Emacs pdf viewers so that is what I use to read books. Ideally I would want to open the media inside of xwidget-webkit, but I have not found a way to do this so far.
-#+begin_src elisp
-(defun olav-open-book ()
-  (interactive)
-  (setq temp default-directory)
-  (cd "~/Google Drive/Books")
-  (call-interactively 'counsel-find-file-extern)
-;  (counsel-find-file-extern (+default/find-file-under-here))
-  (setq default-directory temp)
-)
-
-(defun olav-open-anime ()
-  (interactive)
-  (setq temp default-directory)
-  (cd "~/anime")
-  (call-interactively 'counsel-find-file-extern)
-  ;(counsel-find-file-extern (+default/find-file-under-here)
-  (setq default-directory temp)
-)
-
-(map! :leader (:prefix ("o" . "open") :desc "Open a book" "B" 'olav-open-book))
-(map! :leader (:prefix ("o" . "open") :desc "Open an anime episode" "A" 'olav-open-anime))
-#+end_src
 * Scratch Perspective
 I use a scratch perspective to do tasks that don't fit in the current perspective or any other project. For instance if I am to install a global package when I am in the irc perspective I would switch to the scratch perspective an do it there. This serves as an alternative to pulling up an external terminal.
 #+begin_src elisp
