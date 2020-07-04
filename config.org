@@ -64,6 +64,15 @@ Doom provides a lot of helpers out of the box, but here are some of my own. Feel
       (map! :leader (:prefix ("e" . "open external") :desc "Finder" "f" 'olav-open-finder))
       )
 #+end_src
+* Books
+#+begin_src elisp
+(defun olav-open-book ()
+  (interactive)
+  (setq temp default-directory)
+  (cd "~/Desktop/Books")
+  (call-interactively 'counsel-find-file-extern)
+  (setq default-directory temp))
+#+end_src
 * Personal Information
 #+begin_src elisp
 (setq user-full-name "Olav Fosse"

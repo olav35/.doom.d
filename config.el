@@ -55,6 +55,13 @@
       (map! :leader (:prefix ("e" . "open external") :desc "Finder" "f" 'olav-open-finder))
       )
 
+(defun olav-open-book ()
+  (interactive)
+  (setq temp default-directory)
+  (cd "~/Desktop/Books")
+  (call-interactively 'counsel-find-file-extern)
+  (setq default-directory temp))
+
 (setq user-full-name "Olav Fosse"
       user-mail-address "fosseolav@gmail.com")
 
