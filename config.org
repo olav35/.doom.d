@@ -207,41 +207,6 @@ I use xwidget-webkit which is a way of embedding a webkit browser inside of Emac
 (map! :leader (:prefix ("o" . "open") :desc "Open elfeed" "l"  'olav-rss))
 #+end_src
 
-* Torrent
-Yes.
-
-Emacs has some torrent clients, but I couldn't get any of them to work very well.
-
-#+begin_src elisp
-;(defun olav-mentor ()
-;  (interactive)
-;  (persp-switch "*TORRENT*")
-;  (mentor))
-;(map! :leader (:prefix ("o" . "open") :desc "Open mentor" "m" 'olav-mentor))
-;(setq mentor-rtorrent-download-directory "~/Downloads")
-;(after! 'mentor
-;  (define-key mentor-files-mode-map "j" 'mentor-decrease-priority)
-;  (define-key mentor-files-mode-map "k" 'mentor-increase-priority))
-#+end_src
-
-#+begin_src elisp
-;(defun olav-torrent ()
-;  (interactive)
-;  (persp-switch "*TORRENT*")
-;  (transmission)
-;  )
-;(evil-set-initial-state 'transmission-mode 'normal)
-;(add-hook 'transmission-mode 'disable-evil-mode)
-;(map! :leader (:prefix ("o" . "open") :desc "Open torrent" "m" 'olav-torrent))
-
-;(after! transmission
-;  (defun olav-add-magnet (magnet)
-;    (interactive "sMagnet: ")
-;    (transmission-add magnet))
-;  (define-key transmission-mode-map "a" 'olav-add-magnet)
-  ;)
-#+end_src
-
 * Scratch Perspective
 I use a scratch perspective to do tasks that don't fit in the current perspective or any other project. For instance if I am to install a global package when I am in the irc perspective I would switch to the scratch perspective an do it there. This serves as an alternative to pulling up an external terminal.
 #+begin_src elisp

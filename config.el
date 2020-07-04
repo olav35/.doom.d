@@ -152,32 +152,6 @@
   (=rss))
 (map! :leader (:prefix ("o" . "open") :desc "Open elfeed" "l"  'olav-rss))
 
-;(defun olav-mentor ()
-;  (interactive)
-;  (persp-switch "*TORRENT*")
-;  (mentor))
-;(map! :leader (:prefix ("o" . "open") :desc "Open mentor" "m" 'olav-mentor))
-;(setq mentor-rtorrent-download-directory "~/Downloads")
-;(after! 'mentor
-;  (define-key mentor-files-mode-map "j" 'mentor-decrease-priority)
-;  (define-key mentor-files-mode-map "k" 'mentor-increase-priority))
-
-;(defun olav-torrent ()
-;  (interactive)
-;  (persp-switch "*TORRENT*")
-;  (transmission)
-;  )
-;(evil-set-initial-state 'transmission-mode 'normal)
-;(add-hook 'transmission-mode 'disable-evil-mode)
-;(map! :leader (:prefix ("o" . "open") :desc "Open torrent" "m" 'olav-torrent))
-
-;(after! transmission
-;  (defun olav-add-magnet (magnet)
-;    (interactive "sMagnet: ")
-;    (transmission-add magnet))
-;  (define-key transmission-mode-map "a" 'olav-add-magnet)
-  ;)
-
 (defun olav-scratch ()
   (interactive)
   (if (+workspace-exists-p "*SCRATCH*")
