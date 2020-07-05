@@ -1,7 +1,7 @@
 (setq doom-theme 'doom-one-light)
 
 (defun get-string-from (filename)
-  Return tne contents of FILENAME."
+  "Return the contents of FILENAME."
   (with-temp-buffer
     (insert-file-contents filename)
     (buffer-string)))

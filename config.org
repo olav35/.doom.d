@@ -8,7 +8,7 @@ Welcome to my doom configuration. I hope you find some good snippets to borrow f
 Doom provides a lot of helpers out of the box, but here are some of my own. Feel free to tell me if there are any viable alternative built into Doom or Emacs.
 #+begin_src elisp
 (defun get-string-from (filename)
-  Return tne contents of FILENAME."
+  "Return the contents of FILENAME."
   (with-temp-buffer
     (insert-file-contents filename)
     (buffer-string)))
