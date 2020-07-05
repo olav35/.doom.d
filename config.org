@@ -226,6 +226,12 @@ I use a scratch perspective to do tasks that don't fit in the current perspectiv
 (map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))
 #+end_src
 
+* Javascript
+#+begin_src elisp
+(setq tide-format-options '(:indentSize 2 :tabSize 2))
+#+end_src
+
+
 * Other
 I don't like, or understand for that matter the default behavior of `SPC w m m`. Therefore I rebound it to delete-other-windows which just works.
 #+begin_src elisp

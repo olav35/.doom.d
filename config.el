@@ -167,6 +167,8 @@
 
 (map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))
 
+(setq tide-format-options '(:indentSize 2 :tabSize 2))
+
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 
 (setq doom-line-numbers-style 'relative)
