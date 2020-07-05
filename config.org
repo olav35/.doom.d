@@ -8,7 +8,7 @@ Welcome to my doom configuration. I hope you find some good snippets to borrow f
 Doom provides a lot of helpers out of the box, but here are some of my own. Feel free to tell me if there are any viable alternative built into Doom or Emacs.
 #+begin_src elisp
 (defun get-string-from (filename)
-  "Return the contents of FILENAME."
+  Return tne contents of FILENAME."
   (with-temp-buffer
     (insert-file-contents filename)
     (buffer-string)))
@@ -51,6 +51,10 @@ Doom provides a lot of helpers out of the box, but here are some of my own. Feel
   (interactive)
   (shell-command "open -a Finder.app"))
 
+(defun olav-open-postman ()
+  (interactive)
+  (shell-command "open -a Postman.app"))
+
 (when IS-MAC (setq mac-option-key-is-meta t)
       (setq mac-right-option-modifier nil)
       (setq frame-resize-pixelwise t)
@@ -59,9 +63,10 @@ Doom provides a lot of helpers out of the box, but here are some of my own. Feel
       (map! :leader (:prefix ("e" . "open external") :desc "Chrome" "c" 'olav-open-chrome))
       (map! :leader (:prefix ("e" . "open external") :desc "Discord" "d" 'olav-open-discord))
       (map! :leader (:prefix ("e" . "open external") :desc "Riot" "r" 'olav-open-riot))
-      (map! :leader (:prefix ("e" . "open external") :desc "Spotify" "p" 'olav-open-spotify))
+      (map! :leader (:prefix ("e" . "open external") :desc "Spotify" "m" 'olav-open-spotify))
       (map! :leader (:prefix ("e" . "open external") :desc "OBS" "o" 'olav-open-obs))
       (map! :leader (:prefix ("e" . "open external") :desc "Finder" "f" 'olav-open-finder))
+      (map! :leader (:prefix ("e" . "open external") :desc "Postman" "p" 'olav-open-finder))
       )
 #+end_src
 * Books

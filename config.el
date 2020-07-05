@@ -1,7 +1,7 @@
 (setq doom-theme 'doom-one-light)
 
 (defun get-string-from (filename)
-  "Return the contents of FILENAME."
+  Return tne contents of FILENAME."
   (with-temp-buffer
     (insert-file-contents filename)
     (buffer-string)))
@@ -42,6 +42,10 @@
   (interactive)
   (shell-command "open -a Finder.app"))
 
+(defun olav-open-postman ()
+  (interactive)
+  (shell-command "open -a Postman.app"))
+
 (when IS-MAC (setq mac-option-key-is-meta t)
       (setq mac-right-option-modifier nil)
       (setq frame-resize-pixelwise t)
@@ -50,9 +54,10 @@
       (map! :leader (:prefix ("e" . "open external") :desc "Chrome" "c" 'olav-open-chrome))
       (map! :leader (:prefix ("e" . "open external") :desc "Discord" "d" 'olav-open-discord))
       (map! :leader (:prefix ("e" . "open external") :desc "Riot" "r" 'olav-open-riot))
-      (map! :leader (:prefix ("e" . "open external") :desc "Spotify" "p" 'olav-open-spotify))
+      (map! :leader (:prefix ("e" . "open external") :desc "Spotify" "m" 'olav-open-spotify))
       (map! :leader (:prefix ("e" . "open external") :desc "OBS" "o" 'olav-open-obs))
       (map! :leader (:prefix ("e" . "open external") :desc "Finder" "f" 'olav-open-finder))
+      (map! :leader (:prefix ("e" . "open external") :desc "Postman" "p" 'olav-open-finder))
       )
 
 (defun olav-open-book ()
