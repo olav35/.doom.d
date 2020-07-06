@@ -67,7 +67,15 @@
   (call-interactively 'counsel-find-file-extern)
   (setq default-directory temp))
 
+(defun olav-open-manga ()
+  (interactive)
+  (setq temp default-directory)
+  (cd "~/Desktop/Manga")
+  (call-interactively 'counsel-find-file-extern)
+  (setq default-directory temp))
+
 (map! :leader (:prefix ("o" . "open") :desc "Open a book" "B" 'olav-open-book))
+(map! :leader (:prefix ("o" . "open") :desc "Open a manga" "m" 'olav-open-manga))
 
 (setq user-full-name "Olav Fosse"
       user-mail-address "fosseolav@gmail.com")
