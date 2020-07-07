@@ -55,6 +55,10 @@ Doom provides a lot of helpers out of the box, but here are some of my own. Feel
   (interactive)
   (shell-command "open -a Postman.app"))
 
+(defun olav-open-terminal ()
+  (interactive)
+  (shell-command "open -a Terminal.app"))
+
 (when IS-MAC (setq mac-option-key-is-meta t)
       (setq mac-right-option-modifier nil)
       (setq frame-resize-pixelwise t)
@@ -67,6 +71,7 @@ Doom provides a lot of helpers out of the box, but here are some of my own. Feel
       (map! :leader (:prefix ("e" . "open external") :desc "OBS" "o" 'olav-open-obs))
       (map! :leader (:prefix ("e" . "open external") :desc "Finder" "f" 'olav-open-finder))
       (map! :leader (:prefix ("e" . "open external") :desc "Postman" "p" 'olav-open-finder))
+      (map! :leader (:prefix ("e" . "open external") :desc "Terminal" "t" 'olav-open-terminal))
       )
 #+end_src
 * Books

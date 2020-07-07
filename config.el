@@ -46,6 +46,10 @@
   (interactive)
   (shell-command "open -a Postman.app"))
 
+(defun olav-open-terminal ()
+  (interactive)
+  (shell-command "open -a Terminal.app"))
+
 (when IS-MAC (setq mac-option-key-is-meta t)
       (setq mac-right-option-modifier nil)
       (setq frame-resize-pixelwise t)
@@ -58,6 +62,7 @@
       (map! :leader (:prefix ("e" . "open external") :desc "OBS" "o" 'olav-open-obs))
       (map! :leader (:prefix ("e" . "open external") :desc "Finder" "f" 'olav-open-finder))
       (map! :leader (:prefix ("e" . "open external") :desc "Postman" "p" 'olav-open-finder))
+      (map! :leader (:prefix ("e" . "open external") :desc "Terminal" "t" 'olav-open-terminal))
       )
 
 (defun olav-open-book ()
