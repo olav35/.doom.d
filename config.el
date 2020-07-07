@@ -129,22 +129,6 @@
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp run" "r" 'comp-run))
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
 
-(defun olav-is-xwidget-webkit-buffer-p (buffer) (string-prefix-p "*xwidget webkit: " (buffer-name buffer)))
-
-(defun olav-xwidget-webkit-buffer ()
-  "xwidget-webkit buffer or nil if doesn't exist"
-  (seq-find #'olav-is-xwidget-webkit-buffer-p (buffer-list)))
-
-(defun olav-browse (&optional url second-argument)
-  (interactive)
-  (persp-switch "*BROWSER*")
-  (if (called-interactively-p)
-      (when (not (olav-xwidget-webkit-buffer)) (xwidget-webkit-browse-url "https://fossegr.im" nil))
-    (xwidget-webkit-browse-url url nil))
-    (switch-to-buffer (olav-xwidget-webkit-buffer)))
-(setq browse-url-browser-function 'browse-url-default-macosx-browser)
-(map! :leader (:prefix ("o" . "open") :desc "Open browser" "b"  'olav-browse))
-
 (setq elfeed-feeds
       '(;"http://fossegr.im/feed.xml"
         "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w" ; My channel ? (haven't checked)

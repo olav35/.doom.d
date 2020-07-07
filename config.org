@@ -178,25 +178,6 @@ I also use these functions for quickly compiling, running and testing cpp progra
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp run" "r" 'comp-run))
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
 #+end_src
-* Web Browsing
-I use xwidget-webkit which is a way of embedding a webkit browser inside of Emacs. I use xwidget-webkit whenever I am to open a webpage from within Emacs. For example if I am opening an link from my RSS feed or IRC which do inside of Emacs.
-#+begin_src elisp
-(defun olav-is-xwidget-webkit-buffer-p (buffer) (string-prefix-p "*xwidget webkit: " (buffer-name buffer)))
-
-(defun olav-xwidget-webkit-buffer ()
-  "xwidget-webkit buffer or nil if doesn't exist"
-  (seq-find #'olav-is-xwidget-webkit-buffer-p (buffer-list)))
-
-(defun olav-browse (&optional url second-argument)
-  (interactive)
-  (persp-switch "*BROWSER*")
-  (if (called-interactively-p)
-      (when (not (olav-xwidget-webkit-buffer)) (xwidget-webkit-browse-url "https://fossegr.im" nil))
-    (xwidget-webkit-browse-url url nil))
-    (switch-to-buffer (olav-xwidget-webkit-buffer)))
-(setq browse-url-browser-function 'browse-url-default-macosx-browser)
-(map! :leader (:prefix ("o" . "open") :desc "Open browser" "b"  'olav-browse))
-#+end_src
 * RSS
 #+begin_src elisp
 (setq elfeed-feeds
