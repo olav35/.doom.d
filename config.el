@@ -74,7 +74,7 @@
   (call-interactively 'counsel-find-file-extern)
   (setq default-directory temp))
 
-(map! :leader (:prefix ("o" . "open") :desc "Open a book" "B" 'olav-open-book))
+(map! :leader (:prefix ("o" . "open") :desc "Open a book" "b" 'olav-open-book))
 (map! :leader (:prefix ("o" . "open") :desc "Open a manga" "m" 'olav-open-manga))
 
 (setq user-full-name "Olav Fosse"

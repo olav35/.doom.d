@@ -85,7 +85,7 @@ Doom provides a lot of helpers out of the box, but here are some of my own. Feel
   (call-interactively 'counsel-find-file-extern)
   (setq default-directory temp))
 
-(map! :leader (:prefix ("o" . "open") :desc "Open a book" "B" 'olav-open-book))
+(map! :leader (:prefix ("o" . "open") :desc "Open a book" "b" 'olav-open-book))
 (map! :leader (:prefix ("o" . "open") :desc "Open a manga" "m" 'olav-open-manga))
 #+end_src
 * Personal Information
