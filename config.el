@@ -1,4 +1,4 @@
-(setq doom-theme 'doom-one-light)
+(setq doom-theme 'doom-solarized-light)
 
 (defun get-string-from (filename)
   "Return the contents of FILENAME."
