@@ -165,6 +165,12 @@
 
 (map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))
 
+(add-to-list 'load-path "~/code/radio/")
+(require 'radio)
+
+(map! :leader (:prefix ("r" . "radio") :desc "Play a radio channel" "p" 'radio-play))
+(map! :leader (:prefix ("r" . "radio") :desc "Stop the radio player" "s" 'radio-stop))
+
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 
 (setq doom-line-numbers-style 'relative)

@@ -221,6 +221,16 @@ I use a scratch perspective to do tasks that don't fit in the current perspectiv
 (map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))
 #+end_src
 
+* Radio
+[[https://github.com/olav35/radio][Radio]] is a Internet radio player package written by me. Although it is available on GitHub I load it locally as I find it more convenient to work on that way.
+
+#+begin_src elisp
+(add-to-list 'load-path "~/code/radio/")
+(require 'radio)
+
+(map! :leader (:prefix ("r" . "radio") :desc "Play a radio channel" "p" 'radio-play))
+(map! :leader (:prefix ("r" . "radio") :desc "Stop the radio player" "s" 'radio-stop))
+#+end_src
 * Other
 I don't like, or understand for that matter the default behavior of `SPC w m m`. Therefore I rebound it to delete-other-windows which just works.
 #+begin_src elisp
