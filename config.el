@@ -173,7 +173,7 @@
 
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 
-(setq doom-line-numbers-style 'relative)
+(setq display-line-numbers-type 'relative)
 
 ;(setq org-latex-create-formula-image-program 'dvisvgm)
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))

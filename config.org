@@ -238,5 +238,5 @@ I don't like, or understand for that matter the default behavior of `SPC w m m`.
 #+end_src
 I like relative line numbers
 #+begin_src elisp
-(setq doom-line-numbers-style 'relative)
+(setq display-line-numbers-type 'relative)
 #+end_src
