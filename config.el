@@ -137,16 +137,14 @@
 
 (setq elfeed-feeds
       '(;"http://fossegr.im/feed.xml"
-        "https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w" ; My channel ? (haven't checked)
+        ;"https://www.youtube.com/feeds/videos.xml?channel_id=UCWQ1f0ZhD-qhJB3AfJEoW0w" ; My channel ? (haven't checked)
         "https://protesilaos.com/codelog.xml"
-        "https://www.distrotube.com/phpbb/app.php/feed"
-        ;"https://www.kode24.no/?lab_viewport=rss"
+        ;"https://www.distrotube.com/phpbb/app.php/feed"
         "https://xkcd.com/atom.xml"
         ;"https://news.ycombinator.com/rss"
         ;"https://www.reddit.com/r/emacs/new.rss"
-        "https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" ; Luke Smith
+        ;"https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" ; Luke Smith
         "https://www.kode24.no/?lab_viewport=rss"
-        ;"https://nitter.net/olebullsplass/rss"
         ))
 (defun olav-rss ()
   (interactive)
