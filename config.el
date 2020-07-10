@@ -161,6 +161,12 @@
 (map! :leader (:prefix ("r" . "radio") :desc "Play a radio channel" "p" 'radio-play))
 (map! :leader (:prefix ("r" . "radio") :desc "Stop the radio player" "s" 'radio-stop))
 
+(defun olav-open-current-project-in-visual-studio-code ()
+  (interactive)
+  (shell-command (concat "code " projectile-project-root)))
+
+(map! :leader (:prefix ("p" . "+project") :desc "Open project in Visual Studio Code" "v" 'olav-open-current-project-in-visual-studio-code))
+
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 
 (setq display-line-numbers-type 'relative)
