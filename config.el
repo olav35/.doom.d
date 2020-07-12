@@ -137,7 +137,8 @@
 
 (setq elfeed-feeds
       '("https://protesilaos.com/codelog.xml"
-        "https://www.kode24.no/?lab_viewport=rss"))
+        "https://www.kode24.no/?lab_viewport=rss"
+        "http://blog.cleancoder.com/atom.xml"))
 (defun olav-rss ()
   (interactive)
   (elfeed-update)
