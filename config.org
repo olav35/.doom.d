@@ -231,6 +231,11 @@ I use Visual Studio Code for JavaScript development for it's excellent language 
 
 (map! :leader (:prefix ("p" . "+project") :desc "Open project in Visual Studio Code" "v" 'olav-open-current-project-in-visual-studio-code))
 #+end_src
+* Evil
+This allows me to press jk to go to normal mode
+#+begin_src
+(evil-escape-mode)
+#+end_src
 * Other
 I don't like, or understand for that matter the default behavior of `SPC w m m`. Therefore I rebound it to delete-other-windows which just works.
 #+begin_src elisp
