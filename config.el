@@ -168,6 +168,9 @@
 
 (map! :leader (:prefix ("p" . "+project") :desc "Open project in Visual Studio Code" "v" 'olav-open-current-project-in-visual-studio-code))
 
+(set-frame-parameter (selected-frame) 'alpha '(85 85))
+(add-to-list 'default-frame-alist '(alpha 85 85))
+
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 
 (setq display-line-numbers-type 'relative)

@@ -236,6 +236,11 @@ This allows me to press jk to go to normal mode
 #+begin_src
 (evil-escape-mode)
 #+end_src
+* Transparency
+#+begin_src elisp
+(set-frame-parameter (selected-frame) 'alpha '(97 97))
+(add-to-list 'default-frame-alist '(alpha 97 97))
+#+end_src
 * Other
 I don't like, or understand for that matter the default behavior of `SPC w m m`. Therefore I rebound it to delete-other-windows which just works.
 #+begin_src elisp
