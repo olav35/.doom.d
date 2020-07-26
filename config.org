@@ -2,7 +2,7 @@
 Welcome to my doom configuration. I hope you find some good snippets to borrow from me.
 * Color Theme
 #+begin_src elisp
-(setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-one)
 #+end_src
 * Helpers
 Doom provides a lot of helpers out of the box, but here are some of my own. Feel free to tell me if there are any viable alternative built into Doom or Emacs.
