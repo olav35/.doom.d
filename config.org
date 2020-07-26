@@ -1,18 +1,5 @@
 * Preface
 Welcome to my doom configuration. I hope you find some good snippets to borrow from me.
-* Color Theme
-#+begin_src elisp
-(setq doom-theme 'doom-one)
-#+end_src
-* Helpers
-Doom provides a lot of helpers out of the box, but here are some of my own. Feel free to tell me if there are any viable alternative built into Doom or Emacs.
-#+begin_src elisp
-(defun get-string-from (filename)
-  "Return the contents of FILENAME."
-  (with-temp-buffer
-    (insert-file-contents filename)
-    (buffer-string)))
-#+end_src
 * MacOS exclusive configurations
 #+begin_src elisp
 (when IS-MAC
@@ -111,26 +98,6 @@ This makes it possible to use <s to insert a code block
 #+begin_src elisp
 (require 'org-tempo)
 #+end_src
-** Roam
-#+begin_src elisp
-(setq org-roam-graph-viewer 'counsel-find-file-extern)
-#+end_src
-*** Non-linear notetaking
-/The primary purpose of note-taking should not be for storing ideas, but for developing them. When we take notes, we should ask: “In what context do I want to see this note again?/
-
-I use org-roam to take notes in a graph(network). The way it works is that whenever you link to a note from another note an edge(connection) is created between the two. org-roam provides easy between nodes through their edges. This is useful because it allows me to build useful connections between my notes regardless of which topic(s) they belong to. I was inspired by the zettelkasten method although I don't strictly follow it.
-#+begin_src elisp
-(setq org-roam-directory "~/org/roam")
-(setq org-roam-index-file "index.org")
-#+end_src
-[[file:roam_illustration.svg][An org-roam graph]]
-*** Linear notetakin
-I also use org-mode for organizing knowledge that is more linear in nature. Among other things I manage todos, project ideas, quotes, reading lists, song lists, my calendar, gift ideas, wishlist and youtube scripts all in org-mode.
-
-In addition to that i track my habits in org using org-habits.
-#+begin_src elisp
-(require 'org-habit)
-#+end_src
 ** Latex
 I use latex for notating inline mathematics equations in my org notes. Unfortunately the previews are quite fuzzy on macOS. I've heard that this problem can be avoided by using emacs-mac, but seeing as it doesn't support Emacs 27 I haven't bothered with it.
 #+begin_src emacs-lisp
@@ -223,7 +190,7 @@ I use a scratch perspective to do tasks that don't fit in the current perspectiv
 (map! :leader (:prefix ("r" . "radio") :desc "Stop the radio player" "s" 'radio-stop))
 #+end_src
 * Visual Studio Code
-I use Visual Studio Code for JavaScript development for it's excellent language support, but otherwise I do not buy much into the editor. Therefore I prefer doing things inside Emacs where appropriate. I use projectile and magit with Visual Studio Code.
+I use Visual Studio Code for JavaScript development, but otherwise I do not buy much into the editor. Therefore I prefer doing things inside Emacs where appropriate. I use projectile and magit with Visual Studio Code.
 #+begin_src elisp
 (defun olav-open-current-project-in-visual-studio-code ()
   (interactive)
@@ -233,7 +200,7 @@ I use Visual Studio Code for JavaScript development for it's excellent language 
 #+end_src
 * Evil
 This allows me to press jk to go to normal mode
-#+begin_src
+#+begin_src elisp
 (evil-escape-mode)
 #+end_src
 * Transparency

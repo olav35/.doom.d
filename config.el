@@ -1,11 +1,3 @@
-(setq doom-theme 'doom-solarized-light)
-
-(defun get-string-from (filename)
-  "Return the contents of FILENAME."
-  (with-temp-buffer
-    (insert-file-contents filename)
-    (buffer-string)))
-
 (when IS-MAC
   (setq mac-option-key-is-meta t)
   (defun olav-open-safari ()
@@ -90,13 +82,6 @@
 
 (require 'org-tempo)
 
-(setq org-roam-graph-viewer 'counsel-find-file-extern)
-
-(setq org-roam-directory "~/org/roam")
-(setq org-roam-index-file "index.org")
-
-(require 'org-habit)
-
 (set-file-template! 'c++-mode :trigger "template")
 (setq yas--default-user-snippets-dir "~/.doom.d/snippets")
 
@@ -168,8 +153,10 @@
 
 (map! :leader (:prefix ("p" . "+project") :desc "Open project in Visual Studio Code" "v" 'olav-open-current-project-in-visual-studio-code))
 
-(set-frame-parameter (selected-frame) 'alpha '(85 85))
-(add-to-list 'default-frame-alist '(alpha 85 85))
+(evil-escape-mode)
+
+(set-frame-parameter (selected-frame) 'alpha '(97 97))
+(add-to-list 'default-frame-alist '(alpha 97 97))
 
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 
