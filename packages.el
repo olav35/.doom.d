@@ -51,4 +51,3 @@
 
 (package! doom-snippets :ignore t)
 (package! package-lint)
-(package! org-roam)
