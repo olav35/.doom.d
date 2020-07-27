@@ -158,6 +158,9 @@
 (set-frame-parameter (selected-frame) 'alpha '(97 97))
 (add-to-list 'default-frame-alist '(alpha 97 97))
 
+(setq org-roam-directory "~/kasten")
+(add-hook 'after-init-hook 'org-roam-mode)
+
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 
 (setq display-line-numbers-type 'relative)

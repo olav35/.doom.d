@@ -62,6 +62,7 @@ Welcome to my doom configuration. I hope you find some good snippets to borrow f
   (map! :leader (:prefix ("e" . "open external") :desc "Terminal" "t" 'olav-open-terminal))
   )
 #+end_src
+
 * Books
 #+begin_src elisp
 (defun olav-counsel-find-file-extern-directory (directory)
@@ -81,16 +82,19 @@ Welcome to my doom configuration. I hope you find some good snippets to borrow f
 (map! :leader (:prefix ("o" . "open") :desc "Open a book" "b" 'olav-open-book))
 (map! :leader (:prefix ("o" . "open") :desc "Open a manga" "m" 'olav-open-manga))
 #+end_src
+
 * Personal Information
 #+begin_src elisp
 (setq user-full-name "Olav Fosse"
       user-mail-address "fosseolav@gmail.com")
 #+end_src
+
 * Projectile
 I like how doom handles projects out of the box
 #+begin_src elisp
 (setq projectile-project-search-path '("~/code/"))
 #+end_src
+
 Unfortunately adding ~/.doom.d, ~/org and ~/roam to the search path did not work as expected. Therefore I have to add them manually.
 * Org
 ** Better defaults
@@ -98,12 +102,14 @@ This makes it possible to use <s to insert a code block
 #+begin_src elisp
 (require 'org-tempo)
 #+end_src
+
 ** Latex
 I use latex for notating inline mathematics equations in my org notes. Unfortunately the previews are quite fuzzy on macOS. I've heard that this problem can be avoided by using emacs-mac, but seeing as it doesn't support Emacs 27 I haven't bothered with it.
 #+begin_src emacs-lisp
 ;(setq org-latex-create-formula-image-program 'dvisvgm)
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 #+end_src
+
 * Competitive programming
 I do competitive programming in cpp and for that I rely heavily on my snippets. All of them are hand written by me and only intended for my specific competitive programming workflow.
 #+begin_src elisp
@@ -151,6 +157,7 @@ I also use these functions for quickly compiling, running and testing cpp progra
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp run" "r" 'comp-run))
 (map! :leader (:prefix ("k" . "competitive") :desc "Comp test" "t" 'comp-test))
 #+end_src
+
 * RSS
 #+begin_src elisp
 (setq elfeed-feeds
@@ -179,6 +186,7 @@ I use a scratch perspective to do tasks that don't fit in the current perspectiv
 (map! :leader (:prefix ("o" . "open") :desc "Open scratch" "s" 'olav-scratch))
 #+end_src
 
+
 * Radio
 [[https://github.com/olav35/radio][Radio]] is a Internet radio player package written by me. Although it is available on GitHub I load it locally as I find it more convenient to work on that way.
 
@@ -189,6 +197,8 @@ I use a scratch perspective to do tasks that don't fit in the current perspectiv
 (map! :leader (:prefix ("r" . "radio") :desc "Play a radio channel" "p" 'radio-play))
 (map! :leader (:prefix ("r" . "radio") :desc "Stop the radio player" "s" 'radio-stop))
 #+end_src
+
+
 * Visual Studio Code
 I use Visual Studio Code for JavaScript development, but otherwise I do not buy much into the editor. Therefore I prefer doing things inside Emacs where appropriate. I use projectile and magit with Visual Studio Code.
 #+begin_src elisp
@@ -198,21 +208,34 @@ I use Visual Studio Code for JavaScript development, but otherwise I do not buy 
 
 (map! :leader (:prefix ("p" . "+project") :desc "Open project in Visual Studio Code" "v" 'olav-open-current-project-in-visual-studio-code))
 #+end_src
+
 * Evil
 This allows me to press jk to go to normal mode
 #+begin_src elisp
 (evil-escape-mode)
 #+end_src
+
+
+
 * Transparency
 #+begin_src elisp
 (set-frame-parameter (selected-frame) 'alpha '(97 97))
 (add-to-list 'default-frame-alist '(alpha 97 97))
+#+end_src
+
+
+* Roam
+#+begin_src elisp
+(setq org-roam-directory "~/kasten")
+(add-hook 'after-init-hook 'org-roam-mode)
 #+end_src
 * Other
 I don't like, or understand for that matter the default behavior of `SPC w m m`. Therefore I rebound it to delete-other-windows which just works.
 #+begin_src elisp
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 #+end_src
+
+
 I like relative line numbers
 #+begin_src elisp
 (setq display-line-numbers-type 'relative)
