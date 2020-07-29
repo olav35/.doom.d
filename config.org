@@ -191,13 +191,20 @@ I use a scratch perspective to do tasks that don't fit in the current perspectiv
 [[https://github.com/olav35/radio][Radio]] is a Internet radio player package written by me. Although it is available on GitHub I load it locally as I find it more convenient to work on that way.
 
 #+begin_src elisp
-(add-to-list 'load-path "~/code/radio/")
-(require 'radio)
-
-(map! :leader (:prefix ("r" . "radio") :desc "Play a radio channel" "p" 'radio-play))
-(map! :leader (:prefix ("r" . "radio") :desc "Stop the radio player" "s" 'radio-stop))
+(use-package! eradio
+  :load-path "~/code/eradio"
+  :config
+    (map! :leader (:prefix ("r" . "eradio") :desc "Play a radio channel" "p" 'eradio-play))
+    (map! :leader (:prefix ("r" . "eradio") :desc "Stop the radio player" "s" 'eradio-stop))
+    (setq eradio-channels '(("def con - soma fm" . "https://somafm.com/defcon256.pls")
+                            ("metal - soma fm" . "https://somafm.com/metal130.pls")
+                            ("groove salad - soma fm" . "https://somafm.com/groovesalad256.pls")
+                            ("secret agent - soma fm" . "https://www.somafm.com/secretagent.pls")
+                            ("cafe - lainon" . "https://lainon.life/radio/cafe.ogg.m3u")
+                            ("cyberia - lainon" . "https://lainon.life/radio/cyberia.ogg.m3u")
+                            ("everything - lainon" . "https://lainon.life/radio/everything.ogg.m3u")
+                            ("swing - lainon" . "https://lainon.life/radio/swing.ogg.m3u")))
 #+end_src
-
 
 * Visual Studio Code
 I use Visual Studio Code for JavaScript development, but otherwise I do not buy much into the editor. Therefore I prefer doing things inside Emacs where appropriate. I use projectile and magit with Visual Studio Code.
