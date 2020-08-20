@@ -173,7 +173,7 @@ I also use these functions for quickly compiling, running and testing cpp progra
 #+end_src
 
 * Scratch Perspective
-I use a scratch perspective to do tasks that don't fit in the current perspective or any other project. For instance if I am to install a global package when I am in the irc perspective I would switch to the scratch perspective an do it there. This serves as an alternative to pulling up an external terminal.
+I use a scratch perspective to do tasks that don't fit in the current perspective or any other project. For instance if I am to install a global package when I am in the irc perspective I would switch to the scratch perspective and do it there. This serves as an alternative to pulling up an external terminal.
 #+begin_src elisp
 (defun olav-scratch ()
   (interactive)
@@ -188,7 +188,7 @@ I use a scratch perspective to do tasks that don't fit in the current perspectiv
 
 
 * Radio
-[[https://github.com/olav35/radio][Radio]] is a Internet radio player package written by me. Although it is available on GitHub I load it locally as I find it more convenient to work on that way.
+[[https://github.com/olav35/radio][Radio]] is a Internet radio player package written by me. Although it is available on Melpa I load it locally as I find it more convenient to work on that way.
 
 #+begin_src elisp
 (use-package! eradio
@@ -222,14 +222,11 @@ This allows me to press jk to go to normal mode
 (evil-escape-mode)
 #+end_src
 
-
-
 * Transparency
 #+begin_src elisp
 (set-frame-parameter (selected-frame) 'alpha '(97 97))
 (add-to-list 'default-frame-alist '(alpha 97 97))
 #+end_src
-
 
 * Roam
 #+begin_src elisp
@@ -242,7 +239,6 @@ I don't like, or understand for that matter the default behavior of `SPC w m m`.
 #+begin_src elisp
 (map! :leader (:prefix ("w" . "window") (:prefix ("m" . "maximize") :desc "Actually maximize (as opposed to the default behaviour)" "m" 'delete-other-windows)))
 #+end_src
-
 
 I like relative line numbers
 #+begin_src elisp
